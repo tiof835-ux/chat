@@ -3,29 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THC Team Security Chat</title>
+  <title>Chat Security</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
   <div id="login">
-    <h1>Acceso Seguro</h1>
+    <h1>Chat Security</h1>
     <input id="password" type="password" placeholder="Contraseña">
     <button onclick="checkPassword()">Entrar</button>
   </div>
   <div id="app" style="display:none;">
     <header>
-      <h1>THC Team Security Chat</h1>
-      <nav>
-        <button onclick="switchGroup('games')">Games</button>
-        <button onclick="switchGroup('programacion')">Programación</button>
-      </nav>
+      <h1>Chat Security</h1>
+      <div class="header-controls">
+        <button id="theme-toggle" onclick="toggleTheme()">Modo Claro</button>
+        <nav>
+          <button onclick="switchGroup('games')">Games</button>
+          <button onclick="switchGroup('programacion')">Programación</button>
+        </nav>
+      </div>
     </header>
     <div id="chat">
       <div id="messages"></div>
       <input id="message" placeholder="Mensaje o URL de video">
       <button onclick="sendMessage()">Enviar</button>
     </div>
+    <footer>
+      <p>Created by THCTeam</p>
+    </footer>
   </div>
   <script src="script.js"></script>
 </body>
