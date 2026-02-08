@@ -1,5 +1,6 @@
 const PASSWORD = 'thcteamsecurity';
 let currentGroup = 'games';
+let isLightMode = false; // Por defecto modo oscuro
 
 function checkPassword() {
   const pass = document.getElementById('password').value;
@@ -10,6 +11,12 @@ function checkPassword() {
   } else {
     alert('Contraseña incorrecta');
   }
+}
+
+function toggleTheme() {
+  isLightMode = !isLightMode;
+  document.body.classList.toggle('light-mode', isLightMode);
+  document.getElementById('theme-toggle').textContent = isLightMode ? 'Modo Oscuro' : 'Modo Claro';
 }
 
 function switchGroup(group) {
