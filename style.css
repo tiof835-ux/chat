@@ -1,0 +1,12 @@
+body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; color: #333; }
+#login { text-align: center; margin-top: 100px; }
+#app { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+nav button { margin: 0 10px; padding: 10px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+nav button:hover { background: #0056b3; }
+#chat { margin-top: 20px; }
+#messages { height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; }
+input { width: 70%; padding: 10px; }
+button { padding: 10px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; }
+button:hover { background: #218838; }
+@media (max-width: 600px) { #app { padding: 10px; } nav { flex-direction: column; } }
