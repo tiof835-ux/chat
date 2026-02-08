@@ -1,202 +1,282 @@
 :root {
-  --bg-color: #0a0a0a; /* Negro por defecto (modo oscuro) */
-  --text-color: #00ffcc; /* Verde cian futurístico */
+  --bg-color: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); /* Gradiente espacial oscuro */
+  --text-color: #00ffcc; /* Cian futurístico */
   --accent-color: #007bff; /* Azul */
-  --secondary-bg: #1a1a1a;
-  --border-color: #333;
-  --glow: 0 0 10px rgba(0, 255, 204, 0.5);
+  --secondary-bg: rgba(26, 26, 46, 0.9);
+  --border-color: rgba(0, 255, 204, 0.3);
+  --glow: 0 0 20px rgba(0, 255, 204, 0.6);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
 }
 
 .light-mode {
-  --bg-color: #ffffff; /* Blanco para modo claro */
+  --bg-color: linear-gradient(135deg, #ffffff 0%, #f0f8ff 50%, #e6f7ff 100%); /* Gradiente claro con toques azules */
   --text-color: #000000;
   --accent-color: #0056b3;
-  --secondary-bg: #f4f4f4;
-  --border-color: #ddd;
-  --glow: none;
+  --secondary-bg: rgba(240, 248, 255, 0.9);
+  --border-color: rgba(0, 86, 179, 0.3);
+  --glow: 0 0 20px rgba(0, 86, 179, 0.6);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 body {
-  font-family: 'Orbitron', sans-serif; /* Fuente futurística */
+  font-family: 'Orbitron', sans-serif;
   margin: 0;
   padding: 20px;
   background: var(--bg-color);
   color: var(--text-color);
-  transition: background 0.3s, color 0.3s;
+  transition: all 0.5s ease;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Estrellas animadas en el fondo */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(2px 2px at 20px 30px, var(--text-color), transparent),
+                    radial-gradient(2px 2px at 40px 70px, var(--text-color), transparent),
+                    radial-gradient(1px 1px at 90px 40px, var(--text-color), transparent),
+                    radial-gradient(1px 1px at 130px 80px, var(--text-color), transparent),
+                    radial-gradient(2px 2px at 160px 30px, var(--text-color), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: twinkle 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
 }
 
 #login {
   text-align: center;
   background: var(--secondary-bg);
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: var(--glow), 0 4px 20px rgba(0,0,0,0.3);
-  border: 1px solid var(--border-color);
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: var(--shadow), var(--glow);
+  border: 2px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
 }
 
 #login h1 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
+  font-size: 3em;
+  margin-bottom: 30px;
   text-shadow: var(--glow);
+  letter-spacing: 2px;
 }
 
 #login input {
   width: 100%;
-  padding: 15px;
-  margin: 10px 0;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background: var(--bg-color);
+  padding: 18px;
+  margin: 15px 0;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.1);
   color: var(--text-color);
-  font-size: 1em;
+  font-size: 1.1em;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#login input:focus {
+  border-color: var(--accent-color);
+  box-shadow: var(--glow);
+  outline: none;
 }
 
 #login button {
-  padding: 15px 30px;
-  background: linear-gradient(45deg, var(--accent-color), #00ffcc);
-  color: white;
+  padding: 18px 40px;
+  background: linear-gradient(45deg, var(--accent-color), var(--text-color));
+  color: #000;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 1em;
-  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: var(--glow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 #login button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(0, 255, 204, 1);
 }
 
 #app {
-  max-width: 900px;
+  max-width: 1000px;
   width: 100%;
   background: var(--secondary-bg);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: var(--glow), 0 8px 40px rgba(0,0,0,0.5);
-  border: 1px solid var(--border-color);
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: var(--shadow), var(--glow);
+  border: 2px solid var(--border-color);
+  backdrop-filter: blur(15px);
   position: relative;
+  z-index: 1;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 header h1 {
-  font-size: 2em;
+  font-size: 2.5em;
   text-shadow: var(--glow);
+  letter-spacing: 2px;
 }
 
-.header-controls {
+.theme-icons {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  gap: 15px;
 }
 
-#theme-toggle {
-  padding: 10px 20px;
-  background: var(--accent-color);
-  color: white;
-  border: none;
-  border-radius: 8px;
+.theme-icon {
+  width: 40px;
+  height: 40px;
   cursor: pointer;
-  transition: background 0.3s;
+  color: var(--text-color);
+  transition: color 0.3s, transform 0.3s, filter 0.3s;
+  filter: grayscale(0.5);
 }
 
-#theme-toggle:hover {
-  background: #0056b3;
+.theme-icon.active {
+  filter: none;
+  color: var(--accent-color);
+  transform: scale(1.2);
+}
+
+.theme-icon:hover {
+  transform: scale(1.3);
+  filter: drop-shadow(var(--glow));
 }
 
 nav button {
-  margin: 0 10px;
-  padding: 12px 20px;
-  background: linear-gradient(45deg, var(--accent-color), #00ffcc);
-  color: white;
+  margin: 0 15px;
+  padding: 15px 25px;
+  background: linear-gradient(45deg, var(--accent-color), var(--text-color));
+  color: #000;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 1em;
+  font-weight: bold;
+  transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: var(--glow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 nav button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(0, 255, 204, 1);
 }
 
 #chat {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 #messages {
-  height: 400px;
+  height: 450px;
   overflow-y: auto;
-  border: 1px solid var(--border-color);
-  padding: 20px;
-  margin-bottom: 20px;
-  background: var(--bg-color);
-  border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+  border: 2px solid var(--border-color);
+  padding: 25px;
+  margin-bottom: 25px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: inset var(--shadow);
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-color) transparent;
+}
+
+#messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+#messages::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
 }
 
 #messages p {
-  margin: 10px 0;
-  padding: 10px;
+  margin: 15px 0;
+  padding: 15px;
   background: var(--secondary-bg);
-  border-radius: 8px;
-  border-left: 4px solid var(--accent-color);
+  border-radius: 10px;
+  border-left: 5px solid var(--accent-color);
+  box-shadow: var(--shadow);
 }
 
 input {
-  width: calc(100% - 120px);
-  padding: 15px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background: var(--bg-color);
+  width: calc(100% - 140px);
+  padding: 18px;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.1);
   color: var(--text-color);
-  font-size: 1em;
+  font-size: 1.1em;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  border-color: var(--accent-color);
+  box-shadow: var(--glow);
+  outline: none;
 }
 
 button {
-  padding: 15px 30px;
-  background: linear-gradient(45deg, var(--accent-color), #00ffcc);
-  color: white;
+  padding: 18px 35px;
+  background: linear-gradient(45deg, var(--accent-color), var(--text-color));
+  color: #000;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: var(--glow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(0, 255, 204, 1);
 }
 
 footer {
   text-align: center;
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-color);
-  font-size: 0.9em;
+  margin-top: 40px;
+  padding-top: 25px;
+  border-top: 2px solid var(--border-color);
+  font-size: 1em;
   color: var(--text-color);
   opacity: 0.8;
+  letter-spacing: 1px;
 }
 
 @media (max-width: 600px) {
-  #app { padding: 20px; }
-  header { flex-direction: column; gap: 20px; }
-  .header-controls { flex-direction: column; gap: 10px; }
-  nav { display: flex; flex-wrap: wrap; }
-  input { width: calc(100% - 100px); }
+  #app { padding: 25px; }
+  header { flex-direction: column; gap: 25px; }
+  .theme-icons { justify-content: center; }
+  nav { display: flex; flex-wrap: wrap; justify-content: center; }
+  input { width: calc(100% - 120px); }
+  #login { padding: 30px; }
+  #login h1 { font-size: 2em; }
 }
